@@ -1,10 +1,16 @@
 #include <gtest/gtest.h>
-#include "LoggerAndFileTask.h"
+#include "Logger.h"
+#include "Operation.h"
+#include "FileTask.h"
 
 TEST(OperationTest, Add) {
-    std::string cmd = "add";
-    Operation op(cmd, 2, 3);
+    Operation op("add", 2, 3);
     EXPECT_DOUBLE_EQ(op.execute(), 5);
+}
+
+TEST(OperationTest, DivideByZero) {
+    Operation op("div", 5, 0);
+    EXPECT_THROW(op.execute(), std::runtime_error);
 }
 
 TEST(FileTaskTest, CorrectFile) {
@@ -19,7 +25,6 @@ TEST(FileTaskTest, CorrectFile) {
 
     std::filesystem::remove("test.dat");
 }
-
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
