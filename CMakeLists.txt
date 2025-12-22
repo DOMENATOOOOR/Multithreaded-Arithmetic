@@ -9,12 +9,27 @@ add_subdirectory(
 )
 
 add_executable(MultithreadedArithmetic main.cpp
-        LoggerAndFileTask.h
+        Logger.cpp
+        Logger.h
+        Operation.cpp
+        Operation.h
+        FileTask.cpp
+        FileTask.h
+        TaskProcessor.cpp
+        TaskProcessor.h
 )
 
 target_link_libraries(MultithreadedArithmetic PUBLIC GTest::gtest_main)
 
 add_executable(Tests test.cpp
+        Logger.cpp
+        Logger.h
+        Operation.cpp
+        Operation.h
+        FileTask.cpp
+        FileTask.h
+        TaskProcessor.cpp
+        TaskProcessor.h
 )
 
 target_link_libraries(Tests PRIVATE GTest::gtest_main)
