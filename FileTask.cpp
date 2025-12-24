@@ -16,8 +16,8 @@ double FileTask::operator()() const {
     in >> cmd >> a >> b;
 
     try {
-        Operation op(cmd, a, b);
-        double result = op.execute();
+        auto op = Operations::create(cmd, a, b); 
+        double result = op->execute();
         logger.log("Processed: " + file.string() + " Result: " + std::to_string(result));
         return result;
     } catch (const std::exception& e) {
